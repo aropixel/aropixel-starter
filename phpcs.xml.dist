@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<ruleset name="castor-starter">
+    <file>castor.php</file>
+    <file>.castor</file>
+
+    <rule ref="PSR12">
+        <!-- castor.php doit importer .castor/ ET déclarer les tâches -->
+        <exclude name="PSR1.Files.SideEffects"/>
+    </rule>
+
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="140"/>
+            <property name="absoluteLineLimit" value="0"/>
+        </properties>
+    </rule>
+</ruleset>

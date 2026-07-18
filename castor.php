@@ -23,7 +23,7 @@ function aropixel_contrib_admin(string $name): void
     $bundleDir = $contribDir . '/admin-bundle';
 
     $domain = io()->ask('Nom de domaine local de dev', $name . '.local');
-    $phpVersion = io()->choice('Version PHP', ['8.2', '8.3', '8.4'], '8.3');
+    $phpVersion = io()->choice('Version PHP', ['8.2', '8.3', '8.4', '8.5'], '8.3');
     $branchName = io()->ask('Nom de la branche de travail (laisser vide pour passer)', '');
 
     $adminSlug = generateAdminSlug();
