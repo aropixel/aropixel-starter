@@ -23,14 +23,14 @@ function aropixel_contrib_admin(string $name): void
     $bundleDir = $contribDir . '/admin-bundle';
 
     $domain = io()->ask('Nom de domaine local de dev', $name . '.local');
-    $phpVersion = io()->choice('Version PHP', ['8.2', '8.3', '8.4', '8.5'], '8.3');
+    $phpVersion = io()->choice('Version PHP', ['8.2', '8.3', '8.4', '8.5'], '8.5');
     $branchName = io()->ask('Nom de la branche de travail (laisser vide pour passer)', '');
 
     $adminSlug = generateAdminSlug();
     while (true) {
         $answer = io()->ask(
             'Slug de l\'admin (Entrée pour accepter, "r" pour régénérer)',
-            $adminSlug
+            $adminSlug,
         );
         if ($answer === 'r') {
             $adminSlug = generateAdminSlug();
@@ -100,34 +100,34 @@ function aropixel_contrib_admin(string $name): void
     addMissingBundles($contribDir);
     run(
         'castor builder -- composer require aropixel/admin-bundle:*@dev',
-        context: \Castor\context()->withWorkingDirectory($contribDir)
+        context: \Castor\context()->withWorkingDirectory($contribDir),
     );
     run(
         'castor builder -- php bin/console assets:install --relative',
-        context: \Castor\context()->withWorkingDirectory($contribDir)
+        context: \Castor\context()->withWorkingDirectory($contribDir),
     );
     addAdminBundleImportmap($contribDir);
 
     io()->section('12. Création de la base de données');
     run(
         'castor builder -- php bin/console doctrine:database:drop --force --if-exists',
-        context: \Castor\context()->withWorkingDirectory($contribDir)
+        context: \Castor\context()->withWorkingDirectory($contribDir),
     );
     run(
         'castor builder -- php bin/console doctrine:database:create',
-        context: \Castor\context()->withWorkingDirectory($contribDir)
+        context: \Castor\context()->withWorkingDirectory($contribDir),
     );
     run(
         'castor builder -- php bin/console doctrine:migration:diff -n',
-        context: \Castor\context()->withWorkingDirectory($contribDir)
+        context: \Castor\context()->withWorkingDirectory($contribDir),
     );
     run(
         'castor builder -- php bin/console doctrine:migration:migrate -n --allow-no-migration --all-or-nothing',
-        context: \Castor\context()->withWorkingDirectory($contribDir)
+        context: \Castor\context()->withWorkingDirectory($contribDir),
     );
     run(
         'castor builder -- php bin/console aropixel:admin:create-user --no-interaction',
-        context: \Castor\context()->withWorkingDirectory($contribDir)
+        context: \Castor\context()->withWorkingDirectory($contribDir),
     );
 
     io()->success(array_filter([
@@ -206,17 +206,17 @@ function aropixel_contrib_all(string $name): void
     io()->section('Migration pour l\'entité Project');
     run(
         'castor builder -- php bin/console doctrine:migration:diff -n',
-        context: \Castor\context()->withWorkingDirectory($contribDir)
+        context: \Castor\context()->withWorkingDirectory($contribDir),
     );
     run(
         'castor builder -- php bin/console doctrine:migration:migrate -n --allow-no-migration --all-or-nothing',
-        context: \Castor\context()->withWorkingDirectory($contribDir)
+        context: \Castor\context()->withWorkingDirectory($contribDir),
     );
 
     io()->section('Chargement des fixtures');
     run(
         'castor builder -- php bin/console doctrine:fixtures:load -n',
-        context: \Castor\context()->withWorkingDirectory($contribDir)
+        context: \Castor\context()->withWorkingDirectory($contribDir),
     );
 
     io()->section('Configuration des suites de tests PHPUnit');
@@ -256,7 +256,7 @@ function aropixel_new_admin(
     while (true) {
         $answer = io()->ask(
             'Slug de l\'admin (Entrée pour accepter, "r" pour régénérer)',
-            $adminSlug
+            $adminSlug,
         );
 
         if ($answer === 'r') {
@@ -278,7 +278,7 @@ function aropixel_new_admin(
     io()->section('1. Clonage de jolicode/docker-starter');
     run(sprintf(
         'git clone https://github.com/jolicode/docker-starter.git %s',
-        escapeshellarg($name)
+        escapeshellarg($name),
     ));
 
     // Optionnel: repartir sur un dépôt vierge
@@ -305,11 +305,11 @@ function aropixel_new_admin(
     run(
         'castor builder -- composer require aropixel/admin-bundle:dev-main',
         context: \Castor\context()
-            ->withWorkingDirectory($projectDir)
+            ->withWorkingDirectory($projectDir),
     );
     run(
         'castor builder -- php bin/console assets:install --relative',
-        context: \Castor\context()->withWorkingDirectory($projectDir)
+        context: \Castor\context()->withWorkingDirectory($projectDir),
     );
     addAdminBundleImportmap($projectDir);
 
@@ -327,23 +327,23 @@ function aropixel_new_admin(
     io()->section('9. Création de l\'administrateur');
     run(
         'castor builder -- php bin/console doctrine:database:drop --force --if-exists',
-        context: \Castor\context()->withWorkingDirectory($projectDir)
+        context: \Castor\context()->withWorkingDirectory($projectDir),
     );
     run(
         'castor builder -- php bin/console doctrine:database:create',
-        context: \Castor\context()->withWorkingDirectory($projectDir)
+        context: \Castor\context()->withWorkingDirectory($projectDir),
     );
     run(
         'castor builder -- php bin/console doctrine:migration:diff -n',
-        context: \Castor\context()->withWorkingDirectory($projectDir)
+        context: \Castor\context()->withWorkingDirectory($projectDir),
     );
     run(
         'castor builder -- php bin/console doctrine:migration:migrate -n --allow-no-migration --all-or-nothing',
-        context: \Castor\context()->withWorkingDirectory($projectDir)
+        context: \Castor\context()->withWorkingDirectory($projectDir),
     );
     run(
         'castor builder -- php bin/console aropixel:admin:create-user --no-interaction',
-        context: \Castor\context()->withWorkingDirectory($projectDir)
+        context: \Castor\context()->withWorkingDirectory($projectDir),
     );
 
     $installPage = $all || $withPage;
