@@ -1,0 +1,7 @@
+# Component catalogue — dev only. Provided by castor-starter for the contribution
+# environment; the controller also guards on the environment. The route condition keeps
+# it out of the prod router entirely.
+aropixel_admin_catalog:
+    path: /__ADMIN_SLUG__/_catalog
+    controller: App\Controller\CatalogAction
+    condition: "env('APP_ENV') === 'dev'"

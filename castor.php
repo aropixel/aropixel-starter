@@ -93,6 +93,7 @@ function aropixel_contrib_admin(string $name): void
     io()->section('10. Création des dossiers et copie des fichiers de base');
     createProjectDirectories($contribDir);
     copyStarterFiles($contribDir, $adminSlug);
+    copyContribCatalog($contribDir, $adminSlug);
     generateGitignore($contribDir);
     copyClaudeResources($contribDir);
 

@@ -167,6 +167,55 @@ function copyStarterFiles(string $projectDir, string $adminSlug): void
     }
 }
 
+/**
+ * Installe le catalogue de composants (documentation vivante du design system) dans un
+ * environnement de contribution : le contrôleur d'app + sa route (dev only) qui rend le
+ * template du bundle, et la tâche Castor `catalog:build` / `catalog:shot`.
+ *
+ * Réservé à la contribution — un projet livré n'a pas besoin du catalogue live (il reste
+ * consultable via l'export statique publié sur GitHub Pages).
+ */
+function copyContribCatalog(string $contribDir, string $adminSlug): void
+{
+    $root = dirname(__DIR__);
+
+    // Contrôleur d'app + route (avec substitution du slug), copiés dans l'app Symfony.
+    $appFiles = [
+        'application/src/Controller/CatalogAction.php' => false,
+        'application/config/routes/aropixel_catalog.yaml' => true,
+    ];
+
+    foreach ($appFiles as $file => $slugged) {
+        $source = $root . '/resources/' . $file;
+        if (!file_exists($source)) {
+            throw new RuntimeException(sprintf('Fichier source manquant : %s', $source));
+        }
+
+        $target = $contribDir . '/' . $file;
+        $targetDir = dirname($target);
+        if (!is_dir($targetDir)) {
+            mkdir($targetDir, 0777, true);
+        }
+
+        $content = (string) file_get_contents($source);
+        if ($slugged) {
+            $content = str_replace('__ADMIN_SLUG__', $adminSlug, $content);
+        }
+
+        file_put_contents($target, $content);
+    }
+
+    // La tâche Castor, déposée dans le .castor/ du docker-starter cloné.
+    $catalogTask = $root . '/resources/.castor/catalog.php';
+    if (file_exists($catalogTask)) {
+        $castorDir = $contribDir . '/.castor';
+        if (!is_dir($castorDir)) {
+            mkdir($castorDir, 0777, true);
+        }
+        copy($catalogTask, $castorDir . '/catalog.php');
+    }
+}
+
 function copyAdminBundleSkills(string $projectDir): void
 {
     $source = $projectDir . '/application/vendor/aropixel/admin-bundle/skills';
