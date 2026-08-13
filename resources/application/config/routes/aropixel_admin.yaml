@@ -1,8 +1,11 @@
 aropixel_admin:
-    resource: '@AropixelAdminBundle/Resources/config/routes.yaml'
-    prefix: /__ADMIN_SLUG__
+  resource: "@AropixelAdminBundle/Resources/config/routes.yaml"
+  prefix: /__ADMIN_SLUG__
+
+aropixel_admin_download:
+  resource: "@AropixelAdminBundle/Resources/config/routes/download.yaml"
 
 admin_controllers:
-    resource: ../../src/Controller/Admin/
-    type: attribute
-    prefix: /__ADMIN_SLUG__
+  resource: ../../src/Controller/Admin/
+  type: attribute
+  prefix: /__ADMIN_SLUG__
