@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="castor-starter">
+<ruleset name="aropixel-starter">
     <file>castor.php</file>
     <file>.castor</file>
 

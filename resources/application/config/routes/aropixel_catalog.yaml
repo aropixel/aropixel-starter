@@ -1,4 +1,4 @@
-# Component catalogue — dev only. Provided by castor-starter for the contribution
+# Component catalogue — dev only. Provided by aropixel-starter for the contribution
 # environment; the controller also guards on the environment. The route condition keeps
 # it out of the prod router entirely.
 aropixel_admin_catalog:

@@ -97,7 +97,7 @@ function generateAdminSlug(int $parts = 3): string
  * Charge les mots depuis un fichier local privé.
  *
  * Fichier attendu :
- * ~/.config/aropixel/castor-starter/words.php
+ * ~/.config/aropixel/aropixel-starter/words.php
  */
 function loadAdminSlugWords(): array
 {
@@ -130,7 +130,7 @@ function getAdminSlugWordsConfigPath(): string
         throw new RuntimeException('Impossible de déterminer le répertoire HOME de l\'utilisateur.');
     }
 
-    return rtrim($home, '/').'/'.'.config/aropixel/castor-starter/words.php';
+    return rtrim($home, '/').'/'.'.config/aropixel/aropixel-starter/words.php';
 }
 
 /**

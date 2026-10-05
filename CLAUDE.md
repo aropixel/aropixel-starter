@@ -15,21 +15,21 @@ The `vendor/` directory contains Castor itself, not the generated project.
 
 - [Castor](https://github.com/jolicode/castor) installed globally
 - Docker + Docker Compose
-- `gh` CLI (GitHub CLI) — required for all `aropixel:contrib:*` commands; must be authenticated (`gh auth login`)
+- `gh` CLI (GitHub CLI) — required for all `contrib:*` commands; must be authenticated (`gh auth login`)
 
 ## Available tasks
 
 ```bash
 # Scaffold a new Symfony admin project
-castor aropixel:new:admin <project-name>
+castor new:admin <project-name>
 
 # Bootstrap a contribution environment (admin-bundle is always the base)
-castor aropixel:contrib:admin <dir>
+castor contrib:admin <dir>
 
 # Add a bundle to an existing contrib environment (auto-runs contrib:admin if dir missing)
-castor aropixel:contrib:blog <dir>
-castor aropixel:contrib:page <dir>
-castor aropixel:contrib:menu <dir>
+castor contrib:blog <dir>
+castor contrib:page <dir>
+castor contrib:menu <dir>
 
 # List all tasks
 castor
@@ -65,11 +65,11 @@ resources/
 
 | Task                     | Function | Description |
 |--------------------------|---|---|
-| `aropixel:new:admin`     | `aropixel_new_admin(string $name)` | Full project scaffold |
-| `aropixel:contrib:admin` | `aropixel_contrib_admin(string $name)` | Contribution environment (base — always required) |
-| `aropixel:contrib:blog`  | `aropixel_contrib_blog(string $name)` | Adds blog-bundle (auto-runs admin if dir missing) |
-| `aropixel:contrib:page`  | `aropixel_contrib_page(string $name)` | Adds page-bundle (auto-runs admin if dir missing) |
-| `aropixel:contrib:menu`  | `aropixel_contrib_menu(string $name)` | Adds menu-bundle (auto-runs admin if dir missing) |
+| `new:admin` | `aropixel_new_admin(string $name)` | Full project scaffold |
+| `contrib:admin` | `aropixel_contrib_admin(string $name)` | Contribution environment (base — always required) |
+| `contrib:blog` | `aropixel_contrib_blog(string $name)` | Adds blog-bundle (auto-runs admin if dir missing) |
+| `contrib:page` | `aropixel_contrib_page(string $name)` | Adds page-bundle (auto-runs admin if dir missing) |
+| `contrib:menu` | `aropixel_contrib_menu(string $name)` | Adds menu-bundle (auto-runs admin if dir missing) |
 
 ### `.castor/scaffold.php` — helpers for `new-admin`
 
@@ -92,7 +92,7 @@ resources/
 |---|---|
 | `askAdminSlug(int $parts = 3)` | Interactive prompt with regeneration loop ("r" to regenerate) |
 | `generateAdminSlug(int $parts = 3)` | Builds a random hyphenated slug, e.g. `velvet-harbor-signal` |
-| `loadAdminSlugWords()` | Loads words from `~/.config/aropixel/castor-starter/words.php`; falls back to hardcoded list if absent or invalid |
+| `loadAdminSlugWords()` | Loads words from `~/.config/aropixel/aropixel-starter/words.php`; falls back to hardcoded list if absent or invalid |
 
 Word categories: `adjectives`, `nouns`, `extras`, `tails` (optional, used for 4-part slugs).
 
@@ -150,7 +150,7 @@ io()->writeln('<info>text</info>');
 
 ## Custom word list format
 
-Place at `~/.config/aropixel/castor-starter/words.php`. Must return an array with keys `adjectives`, `nouns`, `extras` (and optionally `tails` for 4-part slugs):
+Place at `~/.config/aropixel/aropixel-starter/words.php`. Must return an array with keys `adjectives`, `nouns`, `extras` (and optionally `tails` for 4-part slugs):
 
 ```php
 <?php
