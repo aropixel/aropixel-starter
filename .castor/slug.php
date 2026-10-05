@@ -98,7 +98,6 @@ function generateAdminSlug(int $parts = 3): string
  *
  * Fichier attendu :
  * ~/.config/aropixel/aropixel-starter/words.php
- * (l'ancien chemin ~/.config/aropixel/castor-starter/words.php est encore lu)
  */
 function loadAdminSlugWords(): array
 {
@@ -131,15 +130,7 @@ function getAdminSlugWordsConfigPath(): string
         throw new RuntimeException('Impossible de déterminer le répertoire HOME de l\'utilisateur.');
     }
 
-    $file = rtrim($home, '/').'/'.'.config/aropixel/aropixel-starter/words.php';
-    $legacyFile = rtrim($home, '/').'/'.'.config/aropixel/castor-starter/words.php';
-
-    // Chemin d'avant le renommage en aropixel-starter
-    if (!is_file($file) && is_file($legacyFile)) {
-        return $legacyFile;
-    }
-
-    return $file;
+    return rtrim($home, '/').'/'.'.config/aropixel/aropixel-starter/words.php';
 }
 
 /**
