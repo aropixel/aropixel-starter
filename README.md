@@ -1,4 +1,4 @@
-# Castor Starter
+# Aropixel Starter
 
 A [Castor](https://github.com/jolicode/castor) task runner that automates two workflows for Aropixel Symfony projects:
 
@@ -10,29 +10,29 @@ A [Castor](https://github.com/jolicode/castor) task runner that automates two wo
 - [Castor](https://github.com/jolicode/castor) installed globally
 - Docker + Docker Compose
 - PHP + Composer
-- `gh` CLI (GitHub CLI) — required for all `aropixel:contrib:*` commands; must be authenticated (`gh auth login`)
+- `gh` CLI (GitHub CLI) — required for all `contrib:*` commands; must be authenticated (`gh auth login`)
 
 ## Installation
 
 ### 1. Clone the project
 
 ```bash
-git clone git@github.com:aropixel/castor-starter.git
+git clone git@github.com:aropixel/aropixel-starter.git
 ```
 
 ### 2. Install dependencies
 
 ```bash
-cd castor-starter
+cd aropixel-starter
 composer install
 ```
 
 ### 3. Configure the alias
 
-To use `castor-starter` from anywhere on your machine, run this command **from the cloned project folder**:
+To use `aropixel-starter` from anywhere on your machine, run this command **from the cloned project folder**:
 
 ```bash
-echo "alias castor-starter='\"$(pwd)/vendor/bin/castor\" --castor-file=\"$(pwd)/castor.php\"'" >> ~/.$(basename $SHELL)rc && source ~/.$(basename $SHELL)rc
+echo "alias aropixel-starter='\"$(pwd)/vendor/bin/castor\" --castor-file=\"$(pwd)/castor.php\"'" >> ~/.$(basename $SHELL)rc && source ~/.$(basename $SHELL)rc
 ```
 
 > Works with zsh and bash (macOS and Linux). For fish or another shell, add the alias manually in the corresponding configuration file.
@@ -47,7 +47,7 @@ echo "alias castor-starter='\"$(pwd)/vendor/bin/castor\" --castor-file=\"$(pwd)/
 ### Scaffold a new admin project
 
 ```bash
-castor-starter aropixel:new:admin <project-name> [--with-page] [--with-blog] [--with-menu] [--all]
+aropixel-starter new:admin <project-name> [--with-page] [--with-blog] [--with-menu] [--all]
 ```
 
 Creates a complete Symfony admin project with Docker infrastructure, `aropixel/admin-bundle`, and Clever Cloud deployment config.
@@ -72,15 +72,15 @@ These commands set up a local development environment for contributing to an Aro
 
 ```bash
 # Base environment — always required first
-castor-starter aropixel:contrib:admin <dir>
+aropixel-starter contrib:admin <dir>
 
 # Add a bundle to an existing contrib environment (auto-runs contrib:admin if <dir> is missing)
-castor-starter aropixel:contrib:blog <dir>
-castor-starter aropixel:contrib:page <dir>
-castor-starter aropixel:contrib:menu <dir>
+aropixel-starter contrib:blog <dir>
+aropixel-starter contrib:page <dir>
+aropixel-starter contrib:menu <dir>
 
 # Full environment with all bundles at once
-castor-starter aropixel:contrib:all <dir>
+aropixel-starter contrib:all <dir>
 ```
 
 The generated structure places the bundle fork alongside the Symfony app so both are inside the Docker volume mount:
@@ -95,5 +95,5 @@ The generated structure places the bundle fork alongside the Symfony app so both
 ### List all available tasks
 
 ```bash
-castor-starter
+aropixel-starter
 ```

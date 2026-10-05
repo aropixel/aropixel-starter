@@ -557,7 +557,7 @@ XML;
 
 /**
  * Installe un bundle Aropixel (blog/page/menu) dans un nouveau projet (sans fork/clone).
- * Utilisé par les options --blog, --page, --menu de aropixel:new:admin.
+ * Utilisé par les options --blog, --page, --menu de new:admin.
  */
 function installNewBundle(string $projectDir, string $bundleName, string $packageName): void
 {

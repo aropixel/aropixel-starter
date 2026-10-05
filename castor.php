@@ -10,7 +10,7 @@ use function Castor\run;
 
 import(__DIR__ . '/.castor');
 
-#[AsTask(name: 'aropixel:contrib:admin', description: 'Crée un environnement de contribution pour aropixel/admin-bundle')]
+#[AsTask(name: 'contrib:admin', description: 'Crée un environnement de contribution pour aropixel/admin-bundle')]
 function aropixel_contrib_admin(string $name): void
 {
     $root = getcwd();
@@ -141,13 +141,13 @@ function aropixel_contrib_admin(string $name): void
     ]));
 }
 
-#[AsTask(name: 'aropixel:contrib:blog', description: 'Crée un environnement de contribution pour aropixel/blog-bundle')]
+#[AsTask(name: 'contrib:blog', description: 'Crée un environnement de contribution pour aropixel/blog-bundle')]
 function aropixel_contrib_blog(string $name): void
 {
     $contribDir = getcwd() . '/' . $name;
 
     if (!is_dir($contribDir)) {
-        io()->note('Environnement de base manquant — lancement de aropixel:contrib:admin...');
+        io()->note('Environnement de base manquant — lancement de contrib:admin...');
         aropixel_contrib_admin($name);
     }
 
@@ -155,13 +155,13 @@ function aropixel_contrib_blog(string $name): void
     installContribBundle($name, 'blog-bundle', 'aropixel/blog-bundle');
 }
 
-#[AsTask(name: 'aropixel:contrib:page', description: 'Crée un environnement de contribution pour aropixel/page-bundle')]
+#[AsTask(name: 'contrib:page', description: 'Crée un environnement de contribution pour aropixel/page-bundle')]
 function aropixel_contrib_page(string $name): void
 {
     $contribDir = getcwd() . '/' . $name;
 
     if (!is_dir($contribDir)) {
-        io()->note('Environnement de base manquant — lancement de aropixel:contrib:admin...');
+        io()->note('Environnement de base manquant — lancement de contrib:admin...');
         aropixel_contrib_admin($name);
     }
 
@@ -169,13 +169,13 @@ function aropixel_contrib_page(string $name): void
     installContribBundle($name, 'page-bundle', 'aropixel/page-bundle');
 }
 
-#[AsTask(name: 'aropixel:contrib:menu', description: 'Crée un environnement de contribution pour aropixel/menu-bundle')]
+#[AsTask(name: 'contrib:menu', description: 'Crée un environnement de contribution pour aropixel/menu-bundle')]
 function aropixel_contrib_menu(string $name): void
 {
     $contribDir = getcwd() . '/' . $name;
 
     if (!is_dir($contribDir)) {
-        io()->note('Environnement de base manquant — lancement de aropixel:contrib:admin...');
+        io()->note('Environnement de base manquant — lancement de contrib:admin...');
         aropixel_contrib_admin($name);
     }
 
@@ -183,7 +183,7 @@ function aropixel_contrib_menu(string $name): void
     installContribBundle($name, 'menu-bundle', 'aropixel/menu-bundle');
 }
 
-#[AsTask(name: 'aropixel:contrib:all', description: 'Crée un environnement de contribution complet (admin + blog + page + menu)')]
+#[AsTask(name: 'contrib:all', description: 'Crée un environnement de contribution complet (admin + blog + page + menu)')]
 function aropixel_contrib_all(string $name): void
 {
     aropixel_contrib_admin($name);
@@ -235,7 +235,7 @@ function aropixel_contrib_all(string $name): void
     ]);
 }
 
-#[AsTask(name: 'aropixel:new:admin', description: 'Crée un projet Symfony admin Aropixel')]
+#[AsTask(name: 'new:admin', description: 'Crée un projet Symfony admin Aropixel')]
 function aropixel_new_admin(
     string $name,
     bool $withPage = false,

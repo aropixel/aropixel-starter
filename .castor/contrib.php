@@ -178,7 +178,7 @@ function copyBundleRouteFile(string $contribDir, string $bundleName): void
 
 /**
  * Installe un bundle Aropixel supplémentaire dans un environnement de contribution existant.
- * Utilisé par aropixel:contrib:blog, :page, :menu.
+ * Utilisé par contrib:blog, :page, :menu.
  */
 function installContribBundle(string $name, string $bundleName, string $packageName): void
 {
